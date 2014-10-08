@@ -1,0 +1,29 @@
+<!-- Home page for logged in users -->
+<% if user_signed_in? %>
+
+	<!-- Signed in information -->
+	<p>Signed in as <%= current_user.username %></p>
+	<p><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></p>
+	<br>
+
+	<!-- Ask a question -->
+	<%= link_to "Ask question", new_question_path, :method=> 'get' %>
+	<br><br>
+
+	<!-- Recent questions -->
+	<p><b>Recent questions:</b></p>
+	<% @questions.each do |q| %>
+		- <a href="questions/<%= q.id %>"><%= q.content %></a><br>
+	<% end %>
+
+	<%= render 'yourquestions' %>
+
+
+
+<!-- Home page for logged out users -->
+<% else %>
+	<p><%= link_to 'Sign in', new_user_session_path, :method=> 'get' %></p>
+	<p><%= link_to 'Sign up', new_user_registration_path, :method=> 'get' %></p>
+<% end %>
+
+

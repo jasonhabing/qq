@@ -1,0 +1,4 @@
+<p><b>Your questions:</b></p>
+	<% @userquestions.each do |q| %>
+		- <a href="questions/<%= q.id %>"><%= q.content %></a><br>
+	<% end %>
