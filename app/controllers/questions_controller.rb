@@ -14,8 +14,13 @@ class QuestionsController < ApplicationController
     @question = Question.friendly.find(params[:id])
     @answers = @question.answers.highest_voted
     @title = @question.content
-    @description = @question.answers.highest_voted.first.content
-    @author = @question.answers.highest_voted.first.user.username
+    @first_answer = @question.answers.highest_voted.first
+    if @first_answer.nil?
+      @description = "Be the first to answer the question #{@question.content}."
+    else
+      @description = @first_answer.content
+    end
+    @author = @question.user.username
 
   end
 

@@ -1,4 +1,4 @@
-class AnswersController < ApplicationController
+  class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
   # GET /answers
@@ -45,8 +45,8 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        @qid = @answer.question_id
-        format.html { redirect_to "/questions/#{@qid}", notice: 'Answer was successfully created.' }
+        @question = @answer.question
+        format.html { redirect_to "/questions/#{@question.slug}", notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new }

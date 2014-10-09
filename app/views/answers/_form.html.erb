@@ -15,9 +15,19 @@
     <%= f.text_area :content, :maxlength => "140", :class => "form-control", :rows => "4" %>
   </div>
 
+    <span id="characters">140</span> Characters Left<br><br> 
+
     <%= f.hidden_field :question_id, :value => @qid %>
   
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<script>
+$('textarea').keyup(function() {
+    var cs = $(this).val().length;
+    var cs2 = 140 - cs
+    $('#characters').text(cs2);
+});
+</script>
