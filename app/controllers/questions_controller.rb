@@ -49,7 +49,10 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
+    
+    if @question.user_id.nil?
     @question.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @question.save

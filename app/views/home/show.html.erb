@@ -2,9 +2,14 @@
 <% if user_signed_in? %>
 
 	<!-- Signed in information -->
+<% if current_user.admin? %>
+<span style="color:red">Logged in as admin</span>
+<% end %>
+
 	<p>Signed in as <%= current_user.username %></p>
-	<p><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></p>
+	<p><%= link_to 'Sign out', destroy_user_session_path(:authenticity_token => form_authenticity_token()), :method=>'delete' %></p>
 	<br>
+
 
 	<!-- Ask a question -->
 	<%= link_to "Ask question", new_question_path, :method=> 'get' %>

@@ -15,6 +15,12 @@
     <%= f.text_area :content, :maxlength => "140", :class => "form-control", :rows => "4" %>
   </div>
   
+<% if current_user.admin? %>
+Select user to post question as: <br><br>
+  <%= f.collection_select :user_id, User.where(:f => true).order(:username),:id,:username, include_blank: false %>
+<% end %>
+
+
   <span id="characters">140</span> Characters Left<br><br> 
 
   <div class="actions">
@@ -22,6 +28,7 @@
   </div>
 <% end %>
 
+<br><br>
 <script>
 $('textarea').keyup(function() {
     var cs = $(this).val().length;
