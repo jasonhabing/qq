@@ -54,7 +54,7 @@ Add votes: <input type="text" name="votes"><br>
 <% if loggedin %>
 <%= link_to "like", {:controller => "answers", :action => "upvote", :id => a.id, :qid => @question.id }, class: 'vote', remote: true %> 
 <% else %>
-Create an account to vote.
+<a href="/beta">Create account to vote</a>
 <% end %>
 
 

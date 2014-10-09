@@ -27,8 +27,18 @@
 
 <!-- Home page for logged out users -->
 <% else %>
+
+	<center>
+	<h1>QuestionJet</h1>
+	<h3>140 character questions and answers</h3><br><br>
 	<p><%= link_to 'Sign in', new_user_session_path, :method=> 'get' %></p>
-	<p><%= link_to 'Sign up', new_user_registration_path, :method=> 'get' %></p>
+	<p><a href="/beta">Join the beta waiting list.</a></p>
+	<!-- Add back in after beta -->
+	<!-- <p><%= link_to 'Sign up', new_user_registration_path, :method=> 'get' %></p> -->
+	
+	</center>
+
+
 <% end %>
 
 

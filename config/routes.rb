@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :answers
   get 'addvotes' => 'answers#add_votes'
   get 'addvotesq' => 'questions#add_votes'
+  get 'beta' => 'home#beta'
 
   resources :questions
 
