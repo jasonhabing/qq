@@ -1,5 +1,53 @@
 module ApplicationHelper
 	
+	def create_five_standard_users
+			5.times do 
+				u = User.new
+				u.username = Faker::Name.first_name.downcase
+				u.email = Faker::Internet.email
+				u.password = Faker::Internet.password
+				u.f = true	
+				u.save
+			end
+	end
+
+	def create_five_number_users
+			5.times do 
+				u = User.new
+				name = Faker::Name.first_name.downcase
+				num = rand(100)
+				u.username = "#{name}#{num}"
+				u.email = Faker::Internet.email
+				u.password = Faker::Internet.password
+				u.f = true	
+				u.save
+			end
+	end
+
+	def create_five_unique_users
+			5.times do 
+				u = User.new	
+				u.username =  Faker::App.name
+				u.email = Faker::Internet.email
+				u.password = Faker::Internet.password
+				u.f = true	
+				u.save
+			end
+	end
+
+	def create_five_unique_users_d
+			5.times do 
+				u = User.new	
+				u.username =  Faker::App.name.downcase
+				u.email = Faker::Internet.email
+				u.password = Faker::Internet.password
+				u.f = true	
+				u.save
+			end
+	end
+
+
+
 # calculate distance between two points using Euclidean n-distance algorithm	
 	def distance(p1, p2)
 		c = p1.count

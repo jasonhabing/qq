@@ -14,6 +14,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+# f generator
+gem 'faker', '~> 1.4.3'
+
 # For friendly URLs
 gem 'friendly_id', '~> 5.0.0'
 

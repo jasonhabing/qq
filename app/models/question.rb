@@ -13,4 +13,6 @@ class Question < ActiveRecord::Base
     self.order("cached_votes_score DESC")
   end
 
+
+
 end
