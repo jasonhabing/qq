@@ -1,5 +1,9 @@
 class Question < ActiveRecord::Base
 
+	extend FriendlyId
+	friendly_id :content, use: :slugged
+
+
 	acts_as_votable
 	belongs_to :user
 	has_many :answers

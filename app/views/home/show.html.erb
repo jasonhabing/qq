@@ -13,7 +13,7 @@
 	<!-- Recent questions -->
 	<p><b>Recent questions:</b></p>
 	<% @questions.each do |q| %>
-		- <a href="questions/<%= q.id %>"><%= q.content %></a><br>
+		- <a href="questions/<%= q.slug %>"><%= q.content %></a><br>
 	<% end %>
 
 	<%= render 'yourquestions' %>

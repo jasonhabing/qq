@@ -1,5 +1,5 @@
 <p><b>Your answers:</b></p>
 	<% @useranswers.each do |a| %>
 	qa = 
-		- <a href="questions/<%= qa.id %>"><%= a.content %></a><br>
+		- <a href="questions/<%= qa.slug %>"><%= a.content %></a><br>
 	<% end %>

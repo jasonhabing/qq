@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Qq</title>
+  <title><%= @title %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <!-- made by www.metatags.org -->
+<meta name="description" content="<%= @description %>" />
+<meta name="keywords" content="<%= @keywords %>" />
+<meta name="author" content="<%= @author %>">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="3 days">
+
 </head>
 <body>
 

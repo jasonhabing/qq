@@ -11,8 +11,11 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
 
-    @qid = params[:id]
-    @answers = Answer.where(:question_id => @qid).highest_voted
+    @question = Question.friendly.find(params[:id])
+    @answers = @question.answers.highest_voted
+    @title = @question.content
+    @description = @question.answers.highest_voted.first.content
+    @author = @question.answers.highest_voted.first.user.username
 
   end
 
@@ -81,7 +84,7 @@ class QuestionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
-      @question = Question.find(params[:id])
+      @question = Question.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
