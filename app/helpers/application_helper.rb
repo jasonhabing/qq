@@ -1,5 +1,9 @@
 module ApplicationHelper
 	
+
+	
+
+
 	def create_five_standard_users
 			5.times do 
 				u = User.new

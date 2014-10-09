@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  include QuestionsHelper
+
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   # GET /questions
@@ -39,6 +41,14 @@ class QuestionsController < ApplicationController
 
   def upvote
     
+  end
+
+  def add_votes
+    v = params[:votes].to_i
+    qid = params[:qid].to_i
+    add_votes_to_question(v,qid)
+    @question = Question.find(qid)
+    redirect_to @question
   end
 
   # GET /questions/1/edit

@@ -1,4 +1,7 @@
   class AnswersController < ApplicationController
+  
+  include AnswersHelper
+  
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
   # GET /answers
@@ -26,6 +29,15 @@
 
   end
 
+  def add_votes
+    v = params[:votes].to_i
+    aid = params[:aid].to_i
+    add_votes_to_answer(v,aid)
+    @question = Answer.find(aid).question
+    redirect_to @question
+
+  end
+
   # GET /answers/new
   def new
     @answer = Answer.new
@@ -41,7 +53,10 @@
   # POST /answers.json
   def create
     @answer = Answer.new(answer_params)
+    
+    if @answer.user_id.nil?
     @answer.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @answer.save

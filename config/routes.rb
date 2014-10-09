@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   resources :answers
+  get 'addvotes' => 'answers#add_votes'
+  get 'addvotesq' => 'questions#add_votes'
 
   resources :questions
 

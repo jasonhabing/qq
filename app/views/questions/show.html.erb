@@ -1,8 +1,16 @@
+<% if user_signed_in? %>
+<% loggedin = true %>
+<% if current_user.admin? %>
+<% unless params[:a] == "0" %>
+<% adminmode = true %>
+<% end %>
+<% end %>
+<% end %>
 
-<div id="votes_count">
-<p>sffasfsa</p>
-</div>
-<br><br>
+
+
+
+<% if adminmode %><center><a href="?a=0">View normally</a></center><% end %>
 
 <p><%= link_to 'Home', root_path %></p>
 <center><h1><%= @question.content %></h1></center>
@@ -10,6 +18,14 @@
 <center>Asked by <%= @question.user.username %></center><br>
 <center><a href="/answers/new?q=<%= @question.id %>">Answer this</a> | VOTE THIS UP</center>
 <center>total votes: <%= @question.get_upvotes.size %>
+
+<% if adminmode %>
+<form action="/addvotesq" method="GET">
+Add votes: <input type="text" name="votes"><br>
+<input type="hidden" name="qid" value="<%= @question.id %>"><br>
+<input type="submit" value="Submit">
+</form>
+<% end %>
 
 
 <!-- testing voting -->
@@ -24,15 +40,33 @@
 
 <% @answers.each do |a| %>
 
-<center><%= a.content %><br>
+<center><%= a.content %>
+	<% if adminmode %>
+	<%= a.id %>
+	<% end %>
 	<%	if a.user.nil? %>
 	Answered anonymously.
 	<% else %>
-	Answered by <%= a.user.username %>
+	Answered by <i><%= a.user.username %></i>
 	<% end %>
 	<br><div id="<%= a.id %>"><%= "#{a.get_upvotes.size}" %></div> votes <br>
 
+<% if loggedin %>
 <%= link_to "like", {:controller => "answers", :action => "upvote", :id => a.id, :qid => @question.id }, class: 'vote', remote: true %> 
+<% else %>
+Create an account to vote.
+<% end %>
+
+
+
+<br>
+<% if adminmode %>
+<form action="/addvotes" method="GET">
+Add votes: <input type="text" name="votes"><br>
+<input type="hidden" name="aid" value="<%= a.id %>"><br>
+<input type="submit" value="Submit">
+</form>
+<% end %>
 
 <br><br>
 	<br></center>

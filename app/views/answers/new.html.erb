@@ -1,4 +1,5 @@
 <h1><%= @question.content %></h1>
+<p>asked by <%= @question.user.username %></p>
 Your answer:
 
 <%= render 'form' %>
